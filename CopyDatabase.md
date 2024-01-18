@@ -1,12 +1,10 @@
 **Usage**
 ```vbscript
-Function CreateNewDB(
-[ByVal FileName As String = ":memory:"],
-[ByVal EncrKey As String],
-[ByVal EnableVBFunctions As Boolean = True]
-) As Boolean
+Function CopyDatabase(
+[ByVal DstDBFileName As String = ":memory:"],
+[ByVal EncrKey As String],[ByVal CompactDstDB As Boolean]
+) As cConnection
 ```
-
 **Example VBScript Code**
 
 ```vbscript
