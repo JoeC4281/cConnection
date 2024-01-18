@@ -1,0 +1,19 @@
+CreateNewDB([ByVal FileName As String = ":memory:"],[ByVal EncrKey As String],[ByVal EnableVBFunctions As Boolean = True]) As Boolean
+
+VBScript Code
+Dim rc6 'as Object
+Dim jlc 'as Object
+
+Set rc6   = CreateObject("rc6.cConnection")
+
+With rc6
+  .CreateNewDB
+  .ExecCmd("CREATE TABLE S (str TEXT NOT NULL)")
+  Set jlc=.CreateCommand("Insert Into S Values(@str)")
+  jlc.SetText 1, "Test"
+  jlc.Execute
+  .CopyDatabase "R:\Test.db"
+End With 
+
+Set jlc   = nothing
+Set rc6   = nothing
