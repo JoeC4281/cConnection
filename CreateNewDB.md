@@ -29,24 +29,40 @@ Set dbf = nothing
 ```
 **Example Harbour/HBrun Code**
 ```foxpro
+// hbmk2 cConnection.prg hbwin.hbc /b
+// hbrun cConnection.hb
+
 PROC Main
 
    LOCAL rc6
    LOCAL dbf
 
+   AltD()
+   AltD( 1 )
+
    rc6 := win_oleCreateObject( "rc6.cConnection" )
 
    rc6:CreateNewDB()
-   rc6:ExecCmd( "CREATE TABLE S (str TEXT NOT NULL)" )
-   dbf := rc6:CreateCommand( "Insert Into S Values(@str)" )
-   dbf:SetText(1, "Test")
-*  dbf:SetInt32(2, 1984)
-*  dbf:SetDouble(3, 3.14)
-*  dbf:SetBlob(4, <What goes here?>)
+   rc6:ExecCmd( "CREATE TABLE S (str TEXT NOT NULL,int INT32 NOT NULL,dbl DOUBLE NOT NULL)" )
+
+// Add Record 2 to database
+   dbf := rc6:CreateCommand( "Insert Into S Values(@str, @int, @dbl)" )
+   dbf:SetText( 1, "Record 1" )
+   dbf:SetInt32( 2, 1990 )
+   dbf:SetDouble( 3, 3.14 )
    dbf:Execute()
-   rc6:CopyDatabase("R:\Test.db")
+
+// Add Record 1 to database
+   dbf := rc6:CreateCommand( "Insert Into S Values(@str, @int, @dbl)" )
+   dbf:SetText( 1, "Record 2" )
+   dbf:SetInt32( 2, 1995 )
+   dbf:SetDouble( 3, 2.71 )
+// dbf:SetBlob(4, <What goes here?>)
+   dbf:Execute()
+
+// Save database to a file
+   rc6:CopyDatabase( "R:\Test.db" )
 
    RETURN
-
 ```
 
