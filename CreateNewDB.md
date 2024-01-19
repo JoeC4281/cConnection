@@ -27,3 +27,22 @@ End With
 Set rc6 = nothing
 Set dbf = nothing
 ```
+**Example Harbour/HBrun Code**
+```foxpro
+PROC Main
+
+   LOCAL rc6
+   LOCAL dbf
+
+   rc6 := win_oleCreateObject( "rc6.cConnection" )
+
+   rc6:CreateNewDB()
+   rc6:ExecCmd( "CREATE TABLE S (str TEXT NOT NULL)" )
+   dbf := rc6:CreateCommand( "Insert Into S Values(@str)" )
+   dbf:SetText(1, "Test")
+   dbf:Execute()
+   rc6:CopyDatabase("R:\Test.db")
+
+   RETURN
+```
+
