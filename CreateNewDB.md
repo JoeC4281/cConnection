@@ -40,9 +40,13 @@ PROC Main
    rc6:ExecCmd( "CREATE TABLE S (str TEXT NOT NULL)" )
    dbf := rc6:CreateCommand( "Insert Into S Values(@str)" )
    dbf:SetText(1, "Test")
+*  dbf:SetInt32(2, 1984)
+*  dbf:SetDouble(3, 3.14)
+*  dbf:SetBlob(4, <What goes here?>)
    dbf:Execute()
    rc6:CopyDatabase("R:\Test.db")
 
    RETURN
+
 ```
 
