@@ -37,6 +37,8 @@ PROC Main
    LOCAL rc6
    LOCAL dbf
 
+   SetMode( 25, 80 )
+
    AltD()
    AltD( 1 )
 
