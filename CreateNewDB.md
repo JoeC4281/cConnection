@@ -63,6 +63,11 @@ PROC Main
    dbf:Execute()
 
 // Save database to a file
+   IF File( "R:\Test.db" )
+      ? "Deleting R:\Test.db"
+      DELETE FILE "R:\Test.db"
+      ? "R:\Test.db deleted"
+   END IF
    rc6:CopyDatabase( "R:\Test.db" )
 
    RETURN
